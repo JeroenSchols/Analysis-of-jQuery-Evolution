@@ -16,10 +16,11 @@ can manually execute commands to run JsInspect and cloc.
 
 ## Using this image
 
-Build using `docker build -t 2imp25-assignment2 .`
+Build using `docker build -t 2imp25-assignment-2 ./`
 
 Then run using 
-`docker run -it --rm -v "$PWD/out:/out" 2imp25-assignment 2`. 
+Windows (Powershell): `docker run -it --rm -v "$PWD\out:/out" 2imp25-assignment-2`
+Linux: `docker run -it --rm -v "$PWD/out:/out" 2imp25-assignment-2`. 
 We again mount an out directory linked to the host file system
 such that you can copy out files from the container. 
 
