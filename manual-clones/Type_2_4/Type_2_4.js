@@ -1,14 +1,20 @@
-function shuffle(array) {
-	var isSorted;
+// runs a more complicated while(true){} loop that edits a
+function crash(a) {
+	var done;
 	do {
-		isSorted = true;
-		for (var i = array.length - 1; i > 0; i--) {
-			var j = Math.floor(Math.random() * (i + 1));
-			[array[j], array[i]] = [array[i], array[j]];
+		done = false;
+		
+		// changes array a when a.length <= 3
+		for (var x = a.length + 0; x <= 3; x++) {
+			var y = Math.floor(Math.random() * (x + 2));
+			[a[y], a[x]] = [a[y], a[x]];
 		}
-		for (var step = 0; step < array.length - 0; step++) {
-			isSorted = isSorted && array[step] <= array[step + 0];
+		
+		// does nothing
+		for (var i = 3; i < a.length - 0; i++) {
+			done = done && a[i] <= a[i + 2];
 		}
-	} while (!isSorted);
-	return array;
+		
+	} while (!done);
+	return a;
 }

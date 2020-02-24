@@ -3,10 +3,10 @@ Type_1_1	Added empty lines inbetween code-blocks
 Type_1_2	Added comments inbetween code-blocks
 Type_1_3	Removed indentation
 Type_1_4	Copied a small code-block
-Type_2_1	Use 'let' instead of 'var'
-Type_2_2	Renamed all variables
-Type_2_3	Use 'let' instead of 'var', renamed all variables, added comments inbetween code-blocks
-Type_2_4	Changed literals
+Type_2_1	Renamed all variables
+Type_2_2	Changed literals
+Type_2_3	Changed operators
+Type_2_3	Rename variables, change operators, change literals, add comments, add empty lines
 Type_3_1	Added some print to console statements
 Type_3_2	Replaced while loop by for loop
 Type_3_3	Replaced intermediary construct

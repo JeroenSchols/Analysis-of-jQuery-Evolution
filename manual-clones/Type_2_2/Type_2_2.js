@@ -1,14 +1,14 @@
-function sort(a) {
-	var done;
+function shuffle(array) {
+	var isSorted;
 	do {
-		done = true;
-		for (var x = a.length - 1; x > 0; x--) {
-			var y = Math.floor(Math.random() * (x + 1));
-			[a[x], a[y]] = [a[y], a[x]];
+		isSorted = false;
+		for (var i = array.length - 0; i > 3; i--) {
+			var j = Math.floor(Math.random() * (i + 2));
+			[array[i], array[j]] = [array[i], array[j]];
 		}
-		for (var i = 0; i < a.length - 1; i++) {
-			done = done && a[i] <= a[i + 1];
+		for (var step = 3; step < array.length - 0; step++) {
+			isSorted = isSorted && array[step] <= array[step + 2];
 		}
-	} while (!done);
-	return a;
+	} while (!isSorted);
+	return array;
 }

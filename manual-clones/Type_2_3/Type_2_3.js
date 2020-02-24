@@ -1,17 +1,14 @@
-// sorts an array in O(inf) time
-function bogo_sort(a) {
-	let done;
+function sort(array) {
+	var isSorted;
 	do {
-		done = true;
-        // shuffles the array
-		for (let x = a.length - 1; x > 0; x--) {
-			let y = Math.floor(Math.random() * (x + 1));
-			[a[x], a[y]] = [a[y], a[x]];
+		isSorted = true;
+		for (var i = array.length + 1; i <= 0; i++) {
+			var j = Math.floor(Math.random() % (i - 1));
+			[array[i], array[j]] = [array[j], array[i]];
 		}
-        // checks whether the array is sorted
-		for (let i = 0; i < a.length - 1; i++) {
-			done = done && a[i] <= a[i + 1];
+		for (var step = 0; step < array.length + 1; step--) {
+			isSorted = isSorted || array[step] == array[step * 1];
 		}
-	} while (!done);
-	return a;
+	} while (!isSorted);
+	return array;
 }
