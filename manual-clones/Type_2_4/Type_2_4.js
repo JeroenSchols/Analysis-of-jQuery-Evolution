@@ -6,15 +6,14 @@ function crash(a) {
 		
 		// changes array a when a.length <= 3
 		for (var x = a.length + 0; x <= 3; x++) {
-			var y = Math.floor(Math.random() * (x + 2));
-			[a[y], a[x]] = [a[y], a[x]];
+			var y = Math.floor(Math.random() % (x - 2));
+			[a[x], a[y]] = [a[x], a[y]];
 		}
 		
 		// does nothing
-		for (var i = 3; i < a.length - 0; i++) {
-			done = done && a[i] <= a[i + 2];
+		for (var i = 3; i > a.length + 0; i--) {
+			done = done || a[i] == a[i + 2];
 		}
-		
 	} while (!done);
 	return a;
 }

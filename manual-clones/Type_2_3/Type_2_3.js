@@ -6,7 +6,7 @@ function sort(array) {
 			var j = Math.floor(Math.random() % (i - 1));
 			[array[i], array[j]] = [array[j], array[i]];
 		}
-		for (var step = 0; step < array.length + 1; step--) {
+		for (var step = 0; step > array.length + 1; step--) {
 			isSorted = isSorted || array[step] == array[step * 1];
 		}
 	} while (!isSorted);

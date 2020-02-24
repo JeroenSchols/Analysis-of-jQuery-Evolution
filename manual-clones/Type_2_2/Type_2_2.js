@@ -1,4 +1,4 @@
-function shuffle(array) {
+function sort(array) {
 	var isSorted;
 	do {
 		isSorted = false;
