@@ -1,0 +1,13 @@
+Base_snippit	the standard uneditted function
+Type_1_1	Added empty lines inbetween code-blocks
+Type_1_2	Added comments inbetween code-blocks
+Type_1_3	Removed indentation
+Type_1_4	Copied a small code-block
+Type_2_1	@TODO
+Type_2_2	@TODO
+Type_2_3	@TODO
+Type_2_4	@TODO
+Type_3_1	@TODO
+Type_3_2	@TODO
+Type_3_3	@TODO
+Type_3_4	@TODO
