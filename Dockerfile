@@ -21,6 +21,8 @@ RUN rm -rf jquery_releases.csv
 
 WORKDIR /usr
 
+ADD manual-clones manual-clones
+
 COPY jsinspect jsinspect
 
 RUN npm install -g ./jsinspect
