@@ -9,5 +9,5 @@ Type_2_3	Changed operators
 Type_2_3	Rename variables, change operators, change literals, add comments, add empty lines
 Type_3_1	Added some print to console statements
 Type_3_2	Replaced while loop by for loop
-Type_3_3	Replaced intermediary construct
-Type_3_4	Distributed code over different functions
+Type_3_3	Displace statements
+Type_3_4	Displace expressions
