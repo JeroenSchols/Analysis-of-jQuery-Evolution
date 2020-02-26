@@ -27,6 +27,7 @@ def main():
         for i2, release2 in enumerate(releases):
             if i1 < i2:
                 i += 1
+                ## @TODO ignore /src/intro.js and /src/outro.js as these are not properly formatted javascript files on which jsinspect crashes.
                 command = f"jsinspect -r json ./jquery-data/{release1['tag']}/src ./jquery-data/{release2['tag']}/src > ../out/return/{release1['tag']}-{release2['tag']}.txt"
                 print(f"Executing {i} out of {l}")
                 os.system(command)
