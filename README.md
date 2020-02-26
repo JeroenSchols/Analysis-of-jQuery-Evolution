@@ -27,6 +27,8 @@ such that you can copy out files from the container.
 When the container is running you can execute bash commands
 as if it is a virtual machine. 
 
+To receive pairwise comparisons execute compare.py in the /usr folder.
+
 # Suggestions
 
 This repository does not contain all files and steps needed to
