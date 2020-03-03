@@ -31,6 +31,8 @@ COPY jquery_releases.csv .
 
 Copy compare.py .
 
+Copy countLines.py .
+
 # Increase the amount of memory nodejs can allocate, this
 # prevents JsInspect from running into the GC issues. 
 ENV NODE_OPTIONS=--max-old-space-size=4000

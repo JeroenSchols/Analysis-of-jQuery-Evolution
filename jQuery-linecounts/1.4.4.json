@@ -1,0 +1,19 @@
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "1.81",
+  "elapsed_seconds"    : 0.0330731868743896,
+  "n_files"            : 15,
+  "n_lines"            : 5862,
+  "files_per_second"   : 453.539601640727,
+  "lines_per_second"   : 177243.276321196,
+  "report_file"        : "../out/cloc/1.4.4.json"},
+"JavaScript" :{
+  "nFiles": 15,
+  "blank": 1141,
+  "comment": 832,
+  "code": 3889},
+"SUM": {
+  "blank": 1141,
+  "comment": 832,
+  "code": 3889,
+  "nFiles": 15} }
