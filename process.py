@@ -82,10 +82,29 @@ def calcOverlaps(releases):
     return overlaps
 
 
+def calcSymMatrix(releases, overlaps):
+    matrix = dict()
+    for i1, release1 in enumerate(releases):
+        matrix[i1] = dict()
+        for i2, release2 in enumerate(releases):
+            if i1 < i2:
+                similarity = overlaps[i1][i2] / (getNLOC(release1) + getNLOC(release2))
+                matrix[i1][i2] = similarity
+    return matrix
+
+
+def getNLOC(release):
+    return release['cloc']['header']['n_lines']
+
+
 def main():
     releases = collectReleases()
     overlaps = calcOverlaps(releases)
-    print(overlaps)
+    similarity_matrix = calcSymMatrix(releases, overlaps)
+
+    # print(releases)
+    # print(overlaps)
+    print(similarity_matrix)
 
 
 if __name__ == "__main__":
