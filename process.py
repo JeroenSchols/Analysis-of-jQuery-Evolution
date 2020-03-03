@@ -17,6 +17,12 @@ def collectReleases():
             line_count += 1
 
         print(f'Processed {line_count} lines.')
+
+    for release in releases:
+        with open(f"jQuery-linecounts/{release['tag']}.json", mode='r') as json_file:
+            data = json.loads(json_file.read())
+            release['cloc'] = data
+
     return releases
 
 
