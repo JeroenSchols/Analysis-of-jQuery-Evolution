@@ -2,7 +2,7 @@ import csv
 import json
 
 
-def main():
+def collectReleases():
     releases = []
 
     with open('jquery_releases.csv', mode='r') as csv_file:
@@ -17,11 +17,14 @@ def main():
             line_count += 1
 
         print(f'Processed {line_count} lines.')
+    return releases
 
-    matches = dict()
+
+def calcOverlaps(releases):
+    overlaps = dict()
     for i1, release1 in enumerate(releases):
         release1 = release1['tag']
-        matches[i1] = dict()
+        overlaps[i1] = dict()
         for i2, release2 in enumerate(releases):
             release2 = release2['tag']
             if i1 < i2:
@@ -54,16 +57,29 @@ def main():
                             if file not in intervals.keys():
                                 intervals[file] = []
 
-                            # TODO Handle intervals gracefully instead of blatantly adding
-                            intervals[file].append({'start': start, 'end': end})
+                            # Shrink the interval to not overlap any already existing intervals of this file
+                            for interval in intervals[file]:
+                                if interval['start'] <= start <= interval['end']:
+                                    start = interval['end']
+                                if interval['start'] <= end <= interval['end']:
+                                    end = interval['start']
+                            # If the interval is still nonempty, add it
+                            if start <= end:
+                                intervals[file].append({'start': start, 'end': end})
 
                     overlapSize = 0
                     for fileIntervals in intervals.values():
                         for interval in fileIntervals:
                             overlapSize += interval['end'] - interval['start']
 
-                    matches[i1][i2] = overlapSize
-    print(matches)
+                    overlaps[i1][i2] = overlapSize
+    return overlaps
+
+
+def main():
+    releases = collectReleases()
+    overlaps = calcOverlaps(releases)
+    print(overlaps)
 
 
 if __name__ == "__main__":
