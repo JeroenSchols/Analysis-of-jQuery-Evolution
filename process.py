@@ -92,6 +92,7 @@ def calcSymMatrix(releases, overlaps):
                 matrix[i1][i2] = similarity
     return matrix
 
+
 def normalizeMatrix(matrix):
     # An arbitrary element of the matrix to start with
     maxval = next(iter(next(iter(matrix.values())).values()))
@@ -105,6 +106,7 @@ def normalizeMatrix(matrix):
     for row in matrix.values():
         for i in row.keys():
             row[i] /= maxval
+
 
 def getNLOC(release):
     return release['cloc']['header']['n_lines']

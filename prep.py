@@ -20,7 +20,6 @@ if __name__ == "__main__":
                 releases.append(row)
             line_count += 1
 
-
         print(f'Processed {line_count} lines.')
 
     for release in releases:
