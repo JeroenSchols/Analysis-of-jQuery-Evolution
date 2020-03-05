@@ -1,19 +1,36 @@
 import csv
 import json
 
+from visualization import visualize
+
 
 def collectReleases():
     releases = []
 
     with open('jquery_releases.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
+        i = 0
         for row in csv_reader:
+            if i == 0:
+                i += 1
+                continue
             releases.append(row)
 
     for release in releases:
         with open(f"jQuery-linecounts/{release['tag']}.json", mode='r') as json_file:
             data = json.loads(json_file.read())
             release['cloc'] = data
+
+    # for release in releases:
+    #     tag = release['tag']
+    #     mult = 1000000
+    #     print(tag)
+    #     release['order'] = 0
+    #     for num in tag.split('.'):
+    #         release['order'] += mult * int(num)
+    #         mult /= 100
+    #
+    # releases = sorted(releases, key=lambda r: r['order'])
 
     return releases
 
@@ -26,7 +43,7 @@ def calcOverlaps(releases):
         for i2, release2 in enumerate(releases):
             release2 = release2['tag']
             if i1 < i2:
-                with open(f"./out/return/{release1}-{release2}.txt", encoding='cp850') as handle:
+                with open(f"./jQuery-comparisons/{release1}-{release2}.txt", encoding='cp850') as handle:
                     jsInspectResults = json.loads(handle.read())
                     intervals = {}
 
@@ -114,6 +131,8 @@ def main():
     # print(releases)
     # print(overlaps)
     print(similarity_matrix)
+
+    visualize(similarity_matrix, releases)
 
 
 if __name__ == "__main__":
