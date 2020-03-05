@@ -14,7 +14,7 @@ def main():
     os.system(command)
 
     i = 0
-    l = len(releases) * len(releases) / 2
+    l = len(releases) * (len(releases)-1) / 2
     for i1, release1 in enumerate(releases):
         for i2, release2 in enumerate(releases):
             if i1 < i2:
