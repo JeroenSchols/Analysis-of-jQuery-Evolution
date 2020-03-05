@@ -11,7 +11,7 @@ def collectReleases():
         csv_reader = csv.DictReader(csv_file)
         i = 0
         for row in csv_reader:
-            if i == 0:
+            if i == 0: # TODO Remove once jsons are produced
                 i += 1
                 continue
             releases.append(row)
@@ -43,6 +43,7 @@ def calcOverlaps(releases):
         for i2, release2 in enumerate(releases):
             release2 = release2['tag']
             if i1 < i2:
+                # TODO Change to .json once comparison is done running
                 with open(f"./jQuery-comparisons/{release1}-{release2}.txt", encoding='cp850') as handle:
                     jsInspectResults = json.loads(handle.read())
                     intervals = {}
