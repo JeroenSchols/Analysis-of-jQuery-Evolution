@@ -11,14 +11,8 @@ releases = []
 if __name__ == "__main__":
     with open('jquery_releases.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
-        line_count = 0
         for row in csv_reader:
-            if line_count == 0:
-                print(f'Column names are {", ".join(row)}')
-                line_count += 1
-            else:
-                releases.append(row)
-            line_count += 1
+            releases.append(row)
 
         print(f'Processed {line_count} lines.')
 
