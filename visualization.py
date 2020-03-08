@@ -55,18 +55,29 @@ def drawGrid(image, releases, matrix, sx, sy, size):
     # Draw the labels
     for release in releases:
         tag = release['tag']
-        pos = int((release['startLine'] + release['endLine']) / 2.0 * scale)
+        print(getTextSize(tag))
+        pos = int((release['startLine'] + release['endLine']) / 2.0 * scale - getTextSize(tag)[1]/2)
         drawText(image, (sx + pos, sy + size + 10), tag, 90)
         drawText(image, (sx - 40, sy + pos), tag, 0)
 
     # Draw the grid-lines
-    draw.line((sx, sy, sx, sy + size), fill=BLACK, width=1)
-    draw.line((sx, sy + size, sx + size, sy + size), fill=BLACK, width=1)
+    LINE_WIDTH_DEFAULT = 1
+    LINE_WIDTH_MAJOR = 2
+    LINE_WIDTH_DOUBLE_MAJOR = 4
+    draw.line((sx, sy, sx, sy + size), fill=BLACK, width=LINE_WIDTH_MAJOR)
+    draw.line((sx, sy + size, sx + size, sy + size), fill=BLACK, width=LINE_WIDTH_MAJOR)
     for release in releases:
-        x = sx + (release['endLine'] * scale)
-        draw.line((x, sy, x, sy + size), fill=BLACK, width=1)
-        y = sy + release['endLine'] * scale
-        draw.line((sx, y, sx + size, y), fill=BLACK, width=1)
+        version = release['tag'].split('.')
+        if int(version[0]) > 1 and version[1] == '0' and version[2] == '0':
+            line_width = LINE_WIDTH_DOUBLE_MAJOR
+        elif len(version) <= 2 or (version[2] == '0' and (int(version[0]) > 1 or int(version[1]) > 7)):
+            line_width = LINE_WIDTH_MAJOR
+        else:
+            line_width = LINE_WIDTH_DEFAULT
+        x = sx + (release['startLine'] * scale)
+        draw.line((x, sy, x, sy + size), fill=BLACK, width=line_width)
+        y = sy + release['startLine'] * scale
+        draw.line((sx, y, sx + size, y), fill=BLACK, width=line_width)
 
 
 def drawLegend(image, sx, sy, width, height):
@@ -79,6 +90,10 @@ def drawLegend(image, sx, sy, width, height):
     drawText(image, (sx + width + TEXTDIST, sy), "1.0", 0)
     drawText(image, (sx + width + TEXTDIST, int(sy + height / 2)), "0.5", 0)
     drawText(image, (sx + width + TEXTDIST, sy + height), "0.0", 0)
+
+
+def getTextSize(text):
+    return ImageFont.load_default().getsize(text)
 
 
 def drawText(image, pos, text, angle):
