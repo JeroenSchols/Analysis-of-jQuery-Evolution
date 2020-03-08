@@ -64,7 +64,7 @@ def drawGrid(image, releases, matrix, sx, sy, size):
     LINE_WIDTH_DEFAULT = 1
     LINE_WIDTH_MAJOR = 2
     LINE_WIDTH_DOUBLE_MAJOR = 4
-    draw.line((sx, sy, sx, sy + size), fill=BLACK, width=LINE_WIDTH_MAJOR)
+    draw.line((sx + size, sy, sx + size, sy + size), fill=BLACK, width=LINE_WIDTH_MAJOR)
     draw.line((sx, sy + size, sx + size, sy + size), fill=BLACK, width=LINE_WIDTH_MAJOR)
     for release in releases:
         version = release['tag'].split('.')
