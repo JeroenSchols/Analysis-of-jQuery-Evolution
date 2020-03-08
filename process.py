@@ -1,7 +1,7 @@
 import csv
 import json
 
-from visualization import visualize_matrix, visualize_barchart
+from visualization import visualize_matrix, visualize_barchart, getNLOC
 
 
 def collectReleases():
@@ -115,11 +115,6 @@ def normalizeMatrix(matrix):
     for row in matrix.values():
         for i in row.keys():
             row[i] /= maxval
-
-
-def getNLOC(release):
-    section = release['cloc']['JavaScript']
-    return section['blank'] + section['comment'] + section['code']
 
 
 def main():

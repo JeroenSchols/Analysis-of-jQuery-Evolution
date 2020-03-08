@@ -8,13 +8,34 @@ BLACK = (0, 0, 0)
 
 def visualize_barchart(releases):
     print("Visualizing barchart")
-    data = dict()
-    for release in releases:
-        data[release['tag']] = getNLOC(release)
-    label = "Lines of code"
-    data_frame = pandas.DataFrame({label: data})
-    data_frame.plot(kind='bar')
-    plt.show()
+    simple = False
+    save = True
+
+    if simple:
+        data = dict()
+        blank = dict()
+        comment = dict()
+        code = dict()
+        for release in reversed(releases):
+            data[release['tag']] = getNLOC(release)
+            blank[release['tag']] = release['cloc']['JavaScript']['blank']
+            comment[release['tag']] = release['cloc']['JavaScript']['comment']
+            code[release['tag']] = release['cloc']['JavaScript']['code']
+        label = "Lines of code"
+        data_frame = pandas.DataFrame({label: data, 'blank': blank, 'comment': comment, 'code': code})
+        # data_frame = pandas.DataFrame({label: data})
+        data_frame.plot(kind='bar')
+    else:
+        heights = [getNLOC(release) for release in reversed(releases)]
+        labels = [release['tag'] for release in reversed(releases)]
+        xposes = range(len(releases))
+        plt.bar(xposes, heights)
+        plt.xticks(xposes, labels, rotation=90, fontsize=5)
+
+    if save:
+        plt.savefig('barchart.pdf')
+    else:
+        plt.show()
 
 
 def visualize_matrix(matrix, releases):
@@ -138,4 +159,5 @@ def interpolate(a, b, perc):
 
 
 def getNLOC(release):
-    return release['cloc']['header']['n_lines']
+    section = release['cloc']['JavaScript']
+    return section['blank'] + section['comment'] + section['code']
