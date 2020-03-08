@@ -17,7 +17,7 @@ def main():
         release = release['tag']
         # cloc jquery-data/3.4.0/src --skip-uniqueness --json --report-file=../out/cloc/3.4.0.json
         ignoreCommand = f"echo \"jquery-data/{release}/src/intro.js \njquery-data/{release}/src/outro.js\" > clocIgnore.txt"
-        countCommand = f"cloc jquery-data/{release}/src --skip-uniqueness --strip-str-comments --json --exclude-list-file=clocIgnore.txt --report-file=../out/cloc/{release}.json"
+        countCommand = f"cloc jquery-data/{release}/src --skip-uniqueness --exclude-dir=test --strip-str-comments --json --exclude-list-file=clocIgnore.txt --report-file=../out/cloc/{release}.json"
         print(f"Executing {i} out of {len(releases)}")
         os.system(ignoreCommand)
         os.system(countCommand)
