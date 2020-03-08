@@ -1,7 +1,7 @@
 import csv
 import json
 
-from visualization import visualize
+from visualization import visualize_matrix, visualize_barchart
 
 
 def collectReleases():
@@ -133,7 +133,8 @@ def main():
     # print(overlaps)
     print(similarity_matrix)
 
-    visualize(similarity_matrix, releases)
+    visualize_barchart(releases)
+    visualize_matrix(similarity_matrix, releases)
 
 
 if __name__ == "__main__":

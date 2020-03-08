@@ -1,10 +1,23 @@
-from PIL import Image, ImageDraw, ImageOps, ImageFont
+from PIL import Image, ImageDraw, ImageFont
+import matplotlib.pyplot as plt
+import pandas
 
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 
-def visualize(matrix, releases):
+def visualize_barchart(releases):
+    print("Visualizing barchart")
+    data = dict()
+    for release in releases:
+        data[release['tag']] = getNLOC(release)
+    label = "Lines of code"
+    data_frame = pandas.DataFrame({label: data})
+    data_frame.plot(kind='bar')
+    plt.show()
+
+
+def visualize_matrix(matrix, releases):
     print("Visualizing matrix")
 
     WIDTH = 2000
@@ -55,7 +68,7 @@ def drawGrid(image, releases, matrix, sx, sy, size):
     # Draw the labels
     for release in releases:
         tag = release['tag']
-        pos = int((release['startLine'] + release['endLine']) / 2.0 * scale - getTextSize(tag)[1]/2)
+        pos = int((release['startLine'] + release['endLine']) / 2.0 * scale - getTextSize(tag)[1] / 2)
         drawText(image, (sx + pos, sy + size + 10), tag, 90)
         drawText(image, (sx - 40, sy + pos), tag, 0)
 
