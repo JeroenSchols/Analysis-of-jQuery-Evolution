@@ -71,9 +71,9 @@ def calcOverlaps(releases):
                             # Shrink the interval to not overlap any already existing intervals of this file
                             for interval in intervals[file]:
                                 if interval['start'] <= start <= interval['end']:
-                                    start = interval['end']
+                                    start = interval['end'] + 1
                                 if interval['start'] <= end <= interval['end']:
-                                    end = interval['start']
+                                    end = interval['start'] - 1
                             # If the interval is still nonempty, add it
                             if start <= end:
                                 intervals[file].append({'start': start, 'end': end})
@@ -81,7 +81,7 @@ def calcOverlaps(releases):
                     overlapSize = 0
                     for fileIntervals in intervals.values():
                         for interval in fileIntervals:
-                            overlapSize += interval['end'] - interval['start']
+                            overlapSize += interval['end'] - interval['start'] + 1
 
                     overlaps[i1][i2] = overlapSize
     return overlaps
