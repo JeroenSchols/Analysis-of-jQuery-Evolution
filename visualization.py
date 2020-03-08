@@ -55,7 +55,6 @@ def drawGrid(image, releases, matrix, sx, sy, size):
     # Draw the labels
     for release in releases:
         tag = release['tag']
-        print(getTextSize(tag))
         pos = int((release['startLine'] + release['endLine']) / 2.0 * scale - getTextSize(tag)[1]/2)
         drawText(image, (sx + pos, sy + size + 10), tag, 90)
         drawText(image, (sx - 40, sy + pos), tag, 0)
@@ -82,7 +81,6 @@ def drawGrid(image, releases, matrix, sx, sy, size):
 
 def drawLegend(image, sx, sy, width, height):
     draw = ImageDraw.Draw(image)
-    draw.rectangle((sx, sy, sx + width, sy + height), outline=BLACK, width=1)
     for i in range(height):
         y = sy + height - i
         draw.rectangle((sx, y, sx + width, y - 1), fill=getColor(i / height))
@@ -90,6 +88,7 @@ def drawLegend(image, sx, sy, width, height):
     drawText(image, (sx + width + TEXTDIST, sy), "1.0", 0)
     drawText(image, (sx + width + TEXTDIST, int(sy + height / 2)), "0.5", 0)
     drawText(image, (sx + width + TEXTDIST, sy + height), "0.0", 0)
+    draw.rectangle((sx, sy, sx + width, sy + height), outline=BLACK, width=1)
 
 
 def getTextSize(text):
