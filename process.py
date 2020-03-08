@@ -9,11 +9,7 @@ def collectReleases():
 
     with open('jquery_releases.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
-        i = 0
         for row in csv_reader:
-            if i == 0: # TODO Remove once jsons are produced
-                i += 1
-                continue
             releases.append(row)
 
     for release in releases:
