@@ -93,8 +93,8 @@ def drawText(image, pos, text, angle):
 
 def getColor(similarity):
     one = (255, 0, 0)
-    half = (100, 255, 100)
-    zero = (200, 200, 255)
+    half = (255, 255, 0)
+    zero = (0, 255, 255)
     if similarity > 0.5:
         return interpolate(half, one, (similarity - 0.5) * 2)
     else:
