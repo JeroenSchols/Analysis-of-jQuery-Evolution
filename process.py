@@ -118,7 +118,8 @@ def normalizeMatrix(matrix):
 
 
 def getNLOC(release):
-    return release['cloc']['header']['n_lines']
+    section = release['cloc']['JavaScript']
+    return section['blank'] + section['comment'] + section['code']
 
 
 def main():
