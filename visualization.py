@@ -8,7 +8,7 @@ def visualize(matrix, releases):
     print("Visualizing matrix")
 
     WIDTH = 2000
-    HEIGHT = 2000
+    HEIGHT = 1750
 
     im = Image.new('RGB', (WIDTH, HEIGHT), WHITE)
 
@@ -18,9 +18,9 @@ def visualize(matrix, releases):
         curLine += getNLOC(release)
         release['endLine'] = curLine
 
-    drawGrid(im, releases, matrix, 500, 500, min(WIDTH, HEIGHT) - 1000)
+    drawGrid(im, releases, matrix, 100, 100, min(WIDTH, HEIGHT) - 200)
 
-    drawLegend(im, WIDTH - 400, 500, 70, min(WIDTH, HEIGHT) - 1000)
+    drawLegend(im, WIDTH - 200, 100, 70, min(WIDTH, HEIGHT) - 200)
 
     # draw.ellipse((100, 100, 150, 200), fill=(255, 0, 0), outline=(0, 0, 0))
     # draw.rectangle((200, 100, 300, 200), fill=(0, 192, 192), outline=(255, 255, 255))
